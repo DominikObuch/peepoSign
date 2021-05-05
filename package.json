@@ -1,0 +1,16 @@
+{
+  "name": "peeposign",
+  "version": "0.0.1",
+  "description": "Create Peepo with your own caption on sign",
+  "main": "app/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "peepo",
+    "sign",
+    "peeposign"
+  ],
+  "author": "",
+  "license": "ISC"
+}
