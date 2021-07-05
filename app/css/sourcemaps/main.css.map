@@ -1,1 +1,1 @@
-{"version":3,"sources":["main.css"],"names":[],"mappings":"AAAA,KACE,WAAA","file":"../main.css","sourcesContent":["body {\n  background: red; }\n"]}
+{"version":3,"sources":["main.scss","main.css"],"names":[],"mappings":"AAGA;EACI,gBAAA;ACFJ;;ADIA;EAAI,YAAA;ACAJ","file":"../main.css","sourcesContent":["@import './colors';\n@import './responsive_mixin';\n@import './typography';\nbody {\n    background: #010;\n}\ndiv{color:black;\n}","body {\n  background: #010;\n}\n\ndiv {\n  color: black;\n}"]}
