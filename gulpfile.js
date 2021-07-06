@@ -14,7 +14,7 @@ const uglify = require('gulp-uglify');
 const config = {
   app: {
       jsFiles: './app/js/**.js',
-      scssFiles: './app/scss/**.scss',
+      scssFiles: './app/scss/**/**.scss',
       cssFiles: './app/css/**.css',
       htmlFiles: 'app/**.html',
       imageFiles: './app/img/**',
@@ -31,8 +31,6 @@ const config = {
   }
 };
 
-
-
 //browsersync config functions
 function browserSyncInit(done) {
     browserSync.init({
@@ -44,7 +42,6 @@ function browserSyncInit(done) {
     if (done) {
         done();
     }
-
 }
 function browserSyncReload(done) {
     browserSync.reload();

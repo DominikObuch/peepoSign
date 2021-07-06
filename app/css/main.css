@@ -1,8 +1,38 @@
-body {
-  background: #010;
+.header__heading {
+  font-family: "Balsamiq Sans";
+  font-weight: normal;
+  color: #FCF7F8;
+  font-size: 1.7em;
 }
 
-div {
-  color: black;
+.header {
+  display: grid;
+  grid-template-columns: 100%;
+  justify-items: center;
+  min-height: 4rem;
+  margin: 0;
+  background: #2F2E30;
+}
+.header__container {
+  display: flex;
+}
+.header__image {
+  max-height: 3em;
+  margin: 0.5em;
+}
+@media only screen and (min-width: 768px) {
+  .header__image {
+    order: 2;
+    max-height: 4em;
+  }
+}
+.header__heading {
+  align-self: center;
+  justify-self: center;
+}
+@media only screen and (min-width: 1024px) {
+  .header__heading {
+    font-size: 2em;
+  }
 }
 /*# sourceMappingURL=sourcemaps/main.css.map */

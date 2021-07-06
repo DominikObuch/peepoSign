@@ -1,0 +1,32 @@
+.header{
+    display: grid;
+    grid-template-columns: 100%;
+    justify-items: center;
+  
+    min-height: 4rem;
+    margin: 0;
+
+    background: $thunder-grey;
+    &__container{
+        display: flex;
+    }
+    &__image{
+        max-height: 3em;
+        margin: 0.5em;
+
+        @include querie_tablet{
+            order: 2;
+            max-height: 4em;
+        }
+    }
+    &__heading{
+        align-self: center;
+        justify-self: center;
+        
+        @extend %header-font;
+
+        @include querie_laptop{
+            font-size: 2em;
+        }
+    }
+}

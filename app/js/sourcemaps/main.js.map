@@ -1,1 +1,1 @@
-{"version":3,"sources":["script.js"],"names":[],"mappings":"AAAA;AACA;AACA;AACA","file":"../main.js","sourcesContent":["'use strict';\nconsole.log('test');\ndocument.body.innerText = 'testing4522222';\n\"yea\""]}
+{"version":3,"sources":["script.js"],"names":[],"mappings":"AAAA","file":"../main.js","sourcesContent":[""]}

@@ -1,7 +1,6 @@
-@import './colors';
-@import './responsive_mixin';
-@import './typography';
-body {
-    background: #010;
-}
-div{color:bldaa123fsdck;
+@import './global/colors';
+@import './global/typography';
+
+@import './mixins/responsive_mixin';
+
+@import 'sections/header';
