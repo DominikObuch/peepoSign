@@ -2,8 +2,9 @@
     display: grid;
     grid-template-columns: 100%;
     justify-items: center;
+    width: 100%;
   
-    min-height: 4rem;
+    height: 15vh;
     margin: 0;
 
     background: $thunder-grey;
@@ -11,9 +12,10 @@
         display: flex;
     }
     &__image{
+        align-self: center;
         max-height: 3em;
+        
         margin: 0.5em;
-
         @include querie_tablet{
             order: 2;
             max-height: 4em;
@@ -25,8 +27,11 @@
         
         @extend %header-font;
 
+        @include querie_extra_small_mobile{
+            margin-left: 1.5em;
+        }
         @include querie_laptop{
-            font-size: 2em;
+            font-size: 2.3em;
         }
     }
 }

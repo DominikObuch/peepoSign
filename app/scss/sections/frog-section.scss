@@ -1,0 +1,23 @@
+.frog-section {
+    display: flex;
+    justify-content: center;
+
+    padding: 10px;
+    border-bottom: 1px solid $grey-line;
+    @include querie_laptop {
+        align-items: center;
+        width: 50vw;
+
+        border-bottom: unset;
+        border-right: 1px solid $grey-line;
+    }
+    &__image {
+        height: 14em;
+        @include querie_laptop {
+            height: 30em;
+        }
+        @include querie_large_laptop{
+            height: 40em;
+        }
+    }
+}
