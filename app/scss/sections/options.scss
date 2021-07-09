@@ -1,0 +1,48 @@
+.options {
+    padding: 0 1em 1em;
+    border-bottom: 1px solid $grey-line;
+
+    @include querie_tablet {
+        display: grid;
+        justify-content: center;
+    }
+    @include querie_laptop{
+        display: block;
+    }
+    &__heading {
+        @extend %subheader-font;
+        @include querie_tablet {
+            text-align: center;
+            font-size: 1.9em;
+        }
+
+    }
+    &__form {
+        display: grid;
+        padding-left: 0.7em;
+
+        font-size: 1.1em;
+        @extend %label-font;
+        @include querie_tablet {
+            padding: 0;
+        }
+    }
+    &__label {
+        padding: .5em .3em;
+    }
+    &__input {
+        height: 0.8em;
+        color: $carbon-grey;
+
+        &--sign-text {
+            @include querie_small_mobile{
+                width: 11em;
+            }
+            width: 9em;
+        }
+        &--resolution {
+            width: 2.7em;
+        }
+    }
+
+}

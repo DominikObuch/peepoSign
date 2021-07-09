@@ -5,6 +5,18 @@
   font-size: 1.7em;
 }
 
+.options__heading {
+  margin: 0.7em 0em;
+  font-family: "Roboto Slab";
+  font-size: 1.5em;
+}
+
+.options__form {
+  color: #2F2E30;
+  font-family: "Ubuntu";
+  font-size: 1em;
+}
+
 .header {
   display: grid;
   grid-template-columns: 100%;
@@ -81,5 +93,55 @@
     grid-template-rows: 1fr;
     height: 85vh;
   }
+}
+
+.options {
+  padding: 0 1em 1em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+@media only screen and (min-width: 768px) {
+  .options {
+    display: grid;
+    justify-content: center;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .options {
+    display: block;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .options__heading {
+    text-align: center;
+    font-size: 1.9em;
+  }
+}
+.options__form {
+  display: grid;
+  padding-left: 0.7em;
+  font-size: 1.1em;
+}
+@media only screen and (min-width: 768px) {
+  .options__form {
+    padding: 0;
+  }
+}
+.options__label {
+  padding: 0.5em 0.3em;
+}
+.options__input {
+  height: 0.8em;
+  color: #626262;
+}
+.options__input--sign-text {
+  width: 9em;
+}
+@media only screen and (min-width: 375px) {
+  .options__input--sign-text {
+    width: 11em;
+  }
+}
+.options__input--resolution {
+  width: 2.7em;
 }
 /*# sourceMappingURL=sourcemaps/main.css.map */
