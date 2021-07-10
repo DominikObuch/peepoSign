@@ -1,4 +1,3 @@
-
 const choosePanelEl = document.getElementsByClassName("options__btn--settings");
 let selectedPanel = 0;
 const advFormEl = document.getElementsByClassName("advanced-options");
@@ -24,4 +23,3 @@ for (let i = 0; i < 3; i++) {
         }
     });
 }
-//# sourceMappingURL=sourcemaps/main.js.map

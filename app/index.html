@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>PeepoSign generator</title>
         <link
             rel="stylesheet"
             href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
@@ -25,19 +25,27 @@
             rel="stylesheet">
     </head>
     <body>
+        <!-- MAIN HEADER START-->
         <header class="header">
             <div class="header__container">
                 <img class="header__image" src="img/logo.png" alt="logo">
                 <h1 class="header__heading">PeepoSign generator</h1>
             </div>
         </header>
+        <!-- MAIN HEADER END-->
+
+        <!-- MAIN PAGE START-->
         <div class="grid-container">
+            <!-- IMAGE OF FROG START-->
             <section class="frog-section">
                 <img
                     class="frog-section__image"
                     src="./img/logo.png"
                     alt="big green frog with sign">
             </section>
+            <!-- IMAGE OF FROG END-->
+
+            <!-- BASIC OPTIONS START-->
             <section class="options">
                 <h3 class="options__heading">Basic options</h2>
                 <div class="options__form">
@@ -56,16 +64,22 @@
 
                 </div>
             </section>
+            <!-- BASIC OPTIONS END-->
+
+            <!-- ADVANCED OPTIONS START-->
             <section class="options">
                 <h3 class="options__heading">Advanced options</h2>
-
+                <!-- CHOOSE PANEL START-->
                 <div class="options__choose-panel">
                     <button
                         class="options__btn options__btn--settings options__btn--settings-active">Text settings</button>
                     <button class="options__btn options__btn--settings">Animations</button>
                     <button class="options__btn options__btn--settings">Other settings</button>
                 </div>
-                <div class="options__form options__form--advanced-options">
+                <!-- CHOOSE PANEL END-->
+
+                <!-- TEXT SETTINGS START-->
+                <div class="options__form options__form--advanced-options advanced-options">
                     <label class="options__label">Font size:
                         <input class="options__input options__input--small-number" type="number">
                         px</label>
@@ -103,8 +117,58 @@
                     </label>
                     <button class="options__btn options__btn--set-default">Set to default</button>
                 </div>
+                <!-- TEXT SETTINGS END-->
+
+                <!-- ANIMATIONS START-->
+                <div
+                    class="options__form options__form--advanced-options advanced-options display-none">
+                    <label class="options__label">Jump duration:
+                        <input class="options__input options__input--small-number" type="number">
+                        s</label>
+                    <label class="options__label">Timing function:
+                        <span class="options__select" tabindex="0">linear
+                        </span>|
+                        <span class="options__select" tabindex="0">ease
+                        </span>|
+                        <span class="options__select options__select--active" tabindex="0">ease-in
+                        </span>|
+                        <span class="options__select" tabindex="0">ease-out
+                        </span>|
+                        <span class="options__select" tabindex="0">ease-in-out
+                        </span>|
+                        <span class="options__select" tabindex="0">cubic-bezier()
+                        </span>
+                    </label>
+                    
+                    <button class="options__btn options__btn--set-default">Randomize</button>
+                </div>
+                <!-- ANIMATIONS SETTINGS END-->
+
+                <!-- OTHER SETTINGS START-->
+                <div
+                    class="options__form options__form--advanced-options advanced-options display-none">
+
+                    <label class="options__label">Background:
+                        <span class="options__select" tabindex="0">upload
+                    </label>
+                    <label class="options__label">Peepo face type:
+                        <span class="options__select" tabindex="0">mad
+                        </span>|
+                        <span class="options__select  options__select--active" tabindex="0">happy
+                        </span>|
+                        <span class="options__select" tabindex="0">neutral</span>
+                    </label>
+                    <label class="options__label">Sign type:
+                        <span class="options__select" tabindex="0">white
+                        </span>|
+                        <span class="options__select  options__select--active" tabindex="0">wood
+                    </label>
+                </div>
+                <!-- OTHER SETTINGS END-->
             </section>
+            <!-- ADVANCED OPTIONS END-->
         </div>
+        <!-- MAIN HEADER END-->
     </body>
     <script src="./js/main.js"></script>
 </html>

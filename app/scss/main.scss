@@ -1,7 +1,8 @@
 @import './global/colors';
 @import './global/typography';
+@import './global/global-class';
 
-@import './mixins/responsive_mixin';
+@import './mixins/responsive-mixin';
 
 @import './components/button.scss';
 

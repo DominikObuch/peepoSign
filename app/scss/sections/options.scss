@@ -4,14 +4,19 @@
     &:last-child {
         border-bottom: 0;
     }
+    @include querie_medium_mobile {
+        display: grid;
+        justify-content: center;
+    }
     @include querie_tablet {
         display: grid;
         justify-content: center;
+        grid-template-rows: 5em auto auto;
         align-items: baseline;
-        grid-template-rows: 20%;
         border-right: 1px solid $grey-line;
     }
     @include querie_laptop {
+        padding-bottom: 0;
         grid-template-columns: 1fr;
         grid-template-rows: min-content min-content;
         display: grid;
@@ -38,7 +43,7 @@
 
             border: 1px solid $black;
             @include querie_laptop {
-                height: 100%;
+                height: 18.5rem;
             }
         }
         @include querie_tablet {
@@ -46,8 +51,7 @@
         }
     }
     &__label {
-        white-space: nowrap;
-        padding: 0.5em 0.3em;
+        padding: 0.44em 0.3em;
     }
     &__input {
         height: 0.8em;
@@ -95,9 +99,19 @@
             &:last-child {
                 margin: 0;
             }
+            @include querie_laptop {
+                padding: 1.5em;
+                color: $carbon-grey;
+                background: $white-grey;
+            }
         }
         &--settings-active {
             background-color: $lapis-blue;
+            @include querie_laptop{
+                color: $bright-blue;
+                border: 2px solid $bright-blue;
+                background: $white-grey;
+            }
         }
         &--set-default {
             @include button(min-content,.7em,2px);
@@ -109,12 +123,9 @@
         }
         &--download {
             @include button(100%, 1em, 2px);
-            margin: .5em 0;
+            margin: 0.5em 0;
             @include querie_medium_mobile {
-                width: 50%;
-            }
-            @include querie_tablet{
-                width: 100%;
+                justify-self: center;
             }
         }
     }
