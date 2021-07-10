@@ -1,10 +1,14 @@
 .grid-container{
     display: grid;
-    grid-template-rows: 1fr 1fr;
     
+    @include querie_tablet{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
     @include querie_laptop{
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr;
-        height: 85vh;
+        grid-template-rows: auto 1fr;
+        min-height: 85vh;
     }
 }

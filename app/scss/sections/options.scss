@@ -1,13 +1,22 @@
 .options {
-    padding: 0 1em 1em;
+    padding: 0 0.5em 0.5em;
     border-bottom: 1px solid $grey-line;
-
+    &:last-child {
+        border-bottom: 0;
+    }
     @include querie_tablet {
         display: grid;
         justify-content: center;
+        align-items: baseline;
+        grid-template-rows: 20%;
+        border-right: 1px solid $grey-line;
     }
-    @include querie_laptop{
-        display: block;
+    @include querie_laptop {
+        grid-template-columns: 1fr;
+        grid-template-rows: min-content min-content;
+        display: grid;
+        justify-content: left;
+        border-right: 0;
     }
     &__heading {
         @extend %subheader-font;
@@ -19,29 +28,94 @@
     }
     &__form {
         display: grid;
-        padding-left: 0.7em;
+        padding: 0 0 0.3em 0.3em;
 
         font-size: 1.1em;
         @extend %label-font;
+
+        &--advanced-options {
+            grid-auto-rows: min-content;
+
+            border: 1px solid $black;
+            @include querie_laptop {
+                height: 100%;
+            }
+        }
         @include querie_tablet {
             padding: 0;
         }
     }
     &__label {
-        padding: .5em .3em;
+        white-space: nowrap;
+        padding: 0.5em 0.3em;
     }
     &__input {
         height: 0.8em;
         color: $carbon-grey;
 
-        &--sign-text {
-            @include querie_small_mobile{
+        &--wide-text {
+            @include querie_small_mobile {
                 width: 11em;
             }
             width: 9em;
         }
         &--resolution {
             width: 2.7em;
+        }
+        &--small-number {
+            width: 2em;
+        }
+        &--extra-small-number {
+            width: 1.5em;
+        }
+    }
+    &__select {
+        color: $ocean-blue;
+        cursor: pointer;
+        user-select: contain;
+
+        &--active {
+            color: $thunder-grey;
+            cursor: default;
+        }
+    }
+    &__choose-panel {
+        display: flex;
+
+    }
+    &__btn {
+        //width, padding, border-radius
+        font-size: 0.9em;
+        background: $ocean-blue;
+        font-family: 'Raleway', sans-serif;
+        color: $snow-white;
+        &--settings {
+            margin-right: 0.2em;
+            @include button(auto,.7em,(2px 2px 0 0));
+            &:last-child {
+                margin: 0;
+            }
+        }
+        &--settings-active {
+            background-color: $lapis-blue;
+        }
+        &--set-default {
+            @include button(min-content,.7em,2px);
+            white-space: nowrap;
+            @include querie_tablet {
+                margin: 0 0 0.2em 0.3em;
+            };
+
+        }
+        &--download {
+            @include button(100%, 1em, 2px);
+            margin: .5em 0;
+            @include querie_medium_mobile {
+                width: 50%;
+            }
+            @include querie_tablet{
+                width: 100%;
+            }
         }
     }
 
