@@ -13,7 +13,7 @@ const uglify = require('gulp-uglify');
 
 const config = {
   app: {
-      jsFiles: './app/js/**.js',
+      jsFiles: './app/js/**/**.js',
       scssFiles: './app/scss/**/**.scss',
       cssFiles: './app/css/**.css',
       htmlFiles: 'app/**.html',
