@@ -11,6 +11,9 @@
     @include querie_extra_small_mobile{
         height: 7rem;
     }
+    @include querie_laptop{
+        height: auto;
+    }
     &__container{
         display: flex;
     }

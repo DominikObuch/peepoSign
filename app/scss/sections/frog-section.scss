@@ -16,12 +16,42 @@
         border-right: 1px solid $grey-line;
     }
     &__image {
-        height: 14em;
+        height: 60vw;
         @include querie_laptop {
-            height: 30em;
+            height: 50vw;
         }
         @include querie_large_laptop{
-            height: 40em;
+            height: 40vw;
+        }
+    }
+    &__image-container{
+        position: relative;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+    }
+    &__sign-text{
+        display: grid;
+        align-items:center;
+        width: 85%;
+        left: 8%;
+        top: 9%;
+        position: absolute;
+        overflow: hidden;
+
+        font-size: 3vw;
+        transform: rotate(6deg);
+        font-family: "Roboto Mono", monospace;
+        line-height: 1.2em;
+        text-align: center;
+        word-wrap: break-word;
+        text-overflow: ellipsis;
+        max-height: 27%;
+        @include querie_laptop {
+            font-size: 2vw;
+        }
+        @include querie_large_laptop{
+            max-height: 11vw;
         }
     }
 }

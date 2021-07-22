@@ -1,49 +1,3 @@
-
-const choosePanelEl = document.getElementsByClassName("options__btn--settings");
-let selectedPanel = 0;
-const advFormEl = document.getElementsByClassName("advanced-options");
-
-for (let i = 0; i < 3; i++) {
-    choosePanelEl[i].addEventListener("click", () => {
-        if (i !== selectedPanel) {
-            choosePanelEl[selectedPanel]
-                .classList
-                .remove("options__btn--settings-active");
-            choosePanelEl[i]
-                .classList
-                .add("options__btn--settings-active");
-
-            advFormEl[selectedPanel]
-                .classList
-                .add("display-none");
-            advFormEl[i]
-                .classList
-                .remove("display-none");
-
-            selectedPanel = i;
-        }
-    });
-}
-function capture() {
-    const captureEl = document.querySelector('#frogImage')
-    html2canvas(captureEl, {scrollY: -window.scrollY})
-        .then(canvas => {
-            document.body.appendChild(canvas)
-            canvas.style.display = 'none'
-            return canvas;
-        })
-        .then(canvas => {
-            const image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
-            const a = document.createElement('a')
-            a.setAttribute('download', 'my-image.png')
-            a.setAttribute('href', image)
-            a.click()
-            canvas.remove()
-        })
-}
-
-const btn = document.querySelector('#download')
-btn.addEventListener('click', capture)
 let inputSignTextEl = document.getElementById("sign-text");
 
 function updateSign(){
@@ -148,4 +102,3 @@ function fontSizePeepo(el, text) {
 //         transform: translateY(0%);
 //     }
 // }
-//# sourceMappingURL=sourcemaps/main.js.map
