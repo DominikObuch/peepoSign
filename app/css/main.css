@@ -109,6 +109,7 @@
   justify-content: center;
 }
 .frog-section__sign-text {
+  height: 27%;
   display: grid;
   align-items: center;
   width: 85%;
@@ -170,7 +171,8 @@
   .options {
     display: grid;
     justify-content: center;
-    grid-template-rows: 5em auto auto;
+    grid-template-rows: 5em -webkit-max-content auto;
+    grid-template-rows: 5em max-content auto;
     align-items: baseline;
     border-right: 1px solid rgba(0, 0, 0, 0.2);
   }
@@ -202,9 +204,14 @@
   grid-auto-rows: min-content;
   border: 1px solid #020300;
 }
+@media only screen and (min-width: 425px) {
+  .options__form--advanced-options {
+    grid-template-columns: 43vw;
+  }
+}
 @media only screen and (min-width: 1024px) {
   .options__form--advanced-options {
-    height: 18.5rem;
+    height: 20.5rem;
   }
 }
 @media only screen and (min-width: 768px) {

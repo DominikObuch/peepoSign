@@ -1,4 +1,6 @@
+"use strict";
 
+const textOnSignEl = document.getElementById("text-on-sign");
 const choosePanelEl = document.getElementsByClassName("options__btn--settings");
 let selectedPanel = 0;
 const advFormEl = document.getElementsByClassName("advanced-options");
@@ -24,8 +26,30 @@ for (let i = 0; i < 3; i++) {
         }
     });
 }
+let handleVerticalAlign = () => {
+    let verticalAlignEl = document.querySelectorAll("#verticalAlign span");
+    let verticalAlignActive = 1; // which one is currently active
+    for (let i = 0, il = verticalAlignEl.length; i < il; i++) {
+        verticalAlignEl[i]
+            .addEventListener("click", function () {
+                if (!this.classList.contains("options__select--active")) {
+                    this
+                        .classList
+                        .add("options__select--active");
+                    console.dir(this)
+                    textOnSignEl.style.alignItems = this.dataset.verticalalign;
+                    verticalAlignEl[verticalAlignActive]
+                        .classList
+                        .remove("options__select--active");
+                    verticalAlignActive = i
+                }
+
+            })
+    }
+}
+handleVerticalAlign();
 function capture() {
-    const captureEl = document.querySelector('#frogImage')
+    const captureEl = document.querySelector('#capture')
     html2canvas(captureEl, {scrollY: -window.scrollY})
         .then(canvas => {
             document.body.appendChild(canvas)
@@ -44,6 +68,32 @@ function capture() {
 
 const btn = document.querySelector('#download')
 btn.addEventListener('click', capture)
+const fontSizeInputEl = document.getElementById("fontSize");
+fontSizeInputEl.addEventListener("input",function(){
+    if(this.value === ""){
+        fontSizePeepo(document.getElementById("text-on-sign"),inputSignTextEl.value)
+    }else{
+        document.getElementById("text-on-sign").style.fontSize = this.value+"px"
+    }
+})
+const breakWordsEl = document.getElementById("breakWords");
+breakWordsEl.addEventListener("change",function(){
+    if(this.checked){
+        textOnSignEl.style.wordBreak = "break-all";
+    }else{
+        textOnSignEl.style.wordBreak = "unset";
+    }
+})
+let resolutionWidthEl = document.getElementById("resolutionWidth")
+let resolutionHeightEl = document.getElementById("resolutionHeight")
+resolutionHeightEl.addEventListener("input",function(){
+    console.log(this.value)
+    document.getElementById("frogImage").style.height = this.value +"px";
+})
+resolutionWidthEl.addEventListener("input",function(){
+    console.log(this.value)
+    document.getElementById("frogImage").style.width = this.value +"px";
+})
 let inputSignTextEl = document.getElementById("sign-text");
 
 function updateSign(){
@@ -77,8 +127,6 @@ function fontSizePeepo(el, text) {
             el.style.fontSize = "4vw";
         }
     }
-   
-
 }
 
 // function smallRandomNumber(){

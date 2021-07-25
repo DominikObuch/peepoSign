@@ -38,10 +38,11 @@
         <div class="grid-container">
             <!-- IMAGE OF FROG START-->
             <section class="frog-section">
-                <div id="frogImage" class="frog-section__image-container">
+                <div id="capture" class="frog-section__image-container">
                     
                  <span id="text-on-sign" class="frog-section__sign-text"> </span>
                 <img
+                    id="frogImage"
                     class="frog-section__image"
                     src="./img/logo.png"
                     alt="big green frog with sign">
@@ -60,9 +61,9 @@
                         <input type="checkbox" name="" id="">
                     </label>
                     <label class="options__label">Resolution:
-                        <input class="options__input options__input--resolution" type="number">
+                        <input id="resolutionWidth" class="options__input options__input--resolution" type="number">
                         X
-                        <input class="options__input options__input--resolution" type="number">
+                        <input id="resolutionHeight" class="options__input options__input--resolution" type="number">
                     </label>
                     <button id="download" class="options__btn options__btn--download">Download</button>
 
@@ -85,17 +86,17 @@
                 <!-- TEXT SETTINGS START-->
                 <div class="options__form options__form--advanced-options advanced-options">
                     <label class="options__label">Font size:
-                        <input class="options__input options__input--small-number" type="number">
+                        <input id="fontSize" class="options__input options__input--small-number" type="number">
                         px</label>
                         <label class="options__label" >Break words
-                            <input type="checkbox" name="" id="">
+                            <input id="breakWords" type="checkbox" name="" id="">
                         </label>
-                    <label class="options__label">Vertical align:
-                        <span class="options__select" tabindex="0">top
+                    <label id="verticalAlign" class="options__label">Vertical align:
+                        <span data-verticalAlign="start" class="options__select" tabindex="0">top
                         </span>|
-                        <span class="options__select  options__select--active" tabindex="0">center
+                        <span data-verticalAlign="center" class="options__select  options__select--active" tabindex="0">center
                         </span>|
-                        <span class="options__select" tabindex="0">bottom</span>
+                        <span data-verticalAlign="end" class="options__select" tabindex="0">bottom</span>
                     </label>
                     <label class="options__label">Horizontal align:
                         <span class="options__select" tabindex="0">left

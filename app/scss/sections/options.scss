@@ -11,7 +11,7 @@
     @include querie_tablet {
         display: grid;
         justify-content: center;
-        grid-template-rows: 5em auto auto;
+        grid-template-rows: 5em max-content auto;
         align-items: baseline;
         border-right: 1px solid $grey-line;
     }
@@ -40,10 +40,13 @@
 
         &--advanced-options {
             grid-auto-rows: min-content;
-
+            
             border: 1px solid $black;
+            @include querie_medium_mobile{
+                grid-template-columns: 43vw;
+            }
             @include querie_laptop {
-                height: 18.5rem;
+                height: 20.5rem;
             }
         }
         @include querie_tablet {

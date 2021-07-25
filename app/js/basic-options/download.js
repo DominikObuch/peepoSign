@@ -1,5 +1,5 @@
 function capture() {
-    const captureEl = document.querySelector('#frogImage')
+    const captureEl = document.querySelector('#capture')
     html2canvas(captureEl, {scrollY: -window.scrollY})
         .then(canvas => {
             document.body.appendChild(canvas)

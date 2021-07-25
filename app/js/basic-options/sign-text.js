@@ -31,8 +31,6 @@ function fontSizePeepo(el, text) {
             el.style.fontSize = "4vw";
         }
     }
-   
-
 }
 
 // function smallRandomNumber(){
