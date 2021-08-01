@@ -37,7 +37,8 @@ function browserSyncInit(done) {
         server: {
             baseDir: config.app.base
         },
-        port: 3000
+        open: false,
+        port: 3000,
     });
     if (done) {
         done();

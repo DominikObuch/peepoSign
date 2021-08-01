@@ -46,7 +46,7 @@
                 grid-template-columns: 43vw;
             }
             @include querie_laptop {
-                height: 20.5rem;
+                height: 20.5em;
             }
         }
         @include querie_tablet {
@@ -57,8 +57,11 @@
         padding: 0.44em 0.3em;
     }
     &__input {
-        height: 0.8em;
-        color: $carbon-grey;
+        height: 1em;
+        color: $black;
+        &::placeholder{
+            color: $carbon-grey;
+        }
 
         &--wide-text {
             @include querie_small_mobile {
@@ -67,10 +70,11 @@
             width: 9em;
         }
         &--resolution {
-            width: 2.7em;
+            width: 3.7em;
+            height: 1.1em;
         }
         &--small-number {
-            width: 2em;
+            width: 2.7em;
         }
         &--extra-small-number {
             width: 1.5em;

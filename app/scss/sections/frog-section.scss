@@ -31,23 +31,26 @@
         justify-content: center;
     }
     &__sign-text{
-        height: 27%;
+        height: 30%;
         display: grid;
         align-items:center;
         width: 85%;
         left: 8%;
-        top: 9%;
+        top: 7%;
         position: absolute;
         overflow: hidden;
+        background: transparent;
+        outline: none;
+        border: none;
 
         font-size: 3vw;
+        filter: blur(1px);
         transform: rotate(6deg);
         font-family: "Roboto Mono", monospace;
         line-height: 1.2em;
         text-align: center;
         word-wrap: break-word;
         text-overflow: ellipsis;
-        max-height: 27%;
         @include querie_laptop {
             font-size: 2vw;
         }

@@ -37,10 +37,10 @@
         <!-- MAIN PAGE START-->
         <div class="grid-container">
             <!-- IMAGE OF FROG START-->
-            <section class="frog-section">
+            <section id="frogSection" class="frog-section">
                 <div id="capture" class="frog-section__image-container">
                     
-                 <span id="text-on-sign" class="frog-section__sign-text"> </span>
+                 <span contenteditable="true" id="text-on-sign" class="frog-section__sign-text"><br></span>
                 <img
                     id="frogImage"
                     class="frog-section__image"
@@ -57,13 +57,13 @@
                     <label class="options__label">Sign text:
                         <input id="sign-text" class="options__input options__input--wide-text" type="text">
                     </label>
-                    <label class="options__label" >Automatic font size
-                        <input type="checkbox" name="" id="">
+                    <label class="options__label">Multiline text
+                        <input type="checkbox" name="" checked id="multiline">
                     </label>
                     <label class="options__label">Resolution:
-                        <input id="resolutionWidth" class="options__input options__input--resolution" type="number">
+                        <input placeholder="width" id="resolutionWidth" class="options__input options__input--resolution" type="number">
                         X
-                        <input id="resolutionHeight" class="options__input options__input--resolution" type="number">
+                        <input placeholder="height" id="resolutionHeight" class="options__input options__input--resolution" type="number">
                     </label>
                     <button id="download" class="options__btn options__btn--download">Download</button>
 
@@ -98,28 +98,28 @@
                         </span>|
                         <span data-verticalAlign="end" class="options__select" tabindex="0">bottom</span>
                     </label>
-                    <label class="options__label">Horizontal align:
-                        <span class="options__select" tabindex="0">left
+                    <label id="horizontalAlign" class="options__label">Horizontal align:
+                        <span data-horizontalAlign="left" class="options__select" tabindex="0">left
                         </span>|
-                        <span class="options__select" tabindex="0">center
+                        <span data-horizontalAlign="center" class="options__select options__select--active" tabindex="0">center
                         </span>|
-                        <span class="options__select options__select--active" tabindex="0">right</span>
+                        <span data-horizontalAlign="right" class="options__select " tabindex="0">right</span>
                     </label>
-                    <label class="options__label">Number of rows:
-                        <input class="options__input options__input--extra-small-number" type="number">
-                    </label>
-                    <label class="options__label">Offset top/bottom:
-                        <input class="options__input options__input--small-number" type="number">
+                    <label class="options__label ">Offset top/bottom:
+                        <input placeholder="0" class="options__input options__input--small-number offsetOptions" type="number">
                         /
-                        <input class="options__input options__input--small-number" type="number">
+                        <input placeholder="0" class="options__input options__input--small-number offsetOptions" type="number">
                         px
                     </label>
-                    <label class="options__label">Offset left/right:
-                        <input class="options__input options__input--small-number" type="number">
+                    <label class="options__label ">Offset left/right:
+                        <input placeholder="0" class="options__input options__input--small-number offsetOptions" type="number">
                         /
-                        <input class="options__input options__input--small-number" type="number">
+                        <input placeholder="0" class="options__input options__input--small-number offsetOptions" type="number">
                         px
                     </label>
+                    <label class="options__label">Font blur:
+                        <input id="fontBlur" placeholder="0" class="options__input options__input--extra-small-number" type="number">
+                        px</label>
                     <label class="options__label">Font family:
                         <input class="options__input options__input--wide-text" type="text">
                     </label>

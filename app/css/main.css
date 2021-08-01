@@ -109,22 +109,25 @@
   justify-content: center;
 }
 .frog-section__sign-text {
-  height: 27%;
+  height: 30%;
   display: grid;
   align-items: center;
   width: 85%;
   left: 8%;
-  top: 9%;
+  top: 7%;
   position: absolute;
   overflow: hidden;
+  background: transparent;
+  outline: none;
+  border: none;
   font-size: 3vw;
+  filter: blur(1px);
   transform: rotate(6deg);
   font-family: "Roboto Mono", monospace;
   line-height: 1.2em;
   text-align: center;
   word-wrap: break-word;
   text-overflow: ellipsis;
-  max-height: 27%;
 }
 @media only screen and (min-width: 1024px) {
   .frog-section__sign-text {
@@ -211,7 +214,7 @@
 }
 @media only screen and (min-width: 1024px) {
   .options__form--advanced-options {
-    height: 20.5rem;
+    height: 20.5em;
   }
 }
 @media only screen and (min-width: 768px) {
@@ -223,7 +226,16 @@
   padding: 0.44em 0.3em;
 }
 .options__input {
-  height: 0.8em;
+  height: 1em;
+  color: #020300;
+}
+.options__input::-moz-placeholder {
+  color: #626262;
+}
+.options__input:-ms-input-placeholder {
+  color: #626262;
+}
+.options__input::placeholder {
   color: #626262;
 }
 .options__input--wide-text {
@@ -235,10 +247,11 @@
   }
 }
 .options__input--resolution {
-  width: 2.7em;
+  width: 3.7em;
+  height: 1.1em;
 }
 .options__input--small-number {
-  width: 2em;
+  width: 2.7em;
 }
 .options__input--extra-small-number {
   width: 1.5em;
