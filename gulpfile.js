@@ -5,7 +5,6 @@ const sass = require('gulp-sass')(require('sass'));
 const sourcemaps = require('gulp-sourcemaps');
 const cleanCSS = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
-const csslint = require('gulp-csslint');
 const concat = require('gulp-concat');
 const htmlmin = require('gulp-htmlmin');
 const del = require('del');
@@ -55,8 +54,6 @@ function scss(done) {
     src(`${config.app.scssDirectory}/main.scss`)
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
-        .pipe(csslint())
-        .pipe(csslint.formatter('compact'))
         .pipe(autoprefixer())
         .pipe(sourcemaps.write('./sourcemaps'))
         .pipe(dest(config.app.cssDirectory));

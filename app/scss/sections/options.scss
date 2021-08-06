@@ -16,11 +16,11 @@
         border-right: 1px solid $grey-line;
     }
     @include querie_laptop {
-        padding-bottom: 0;
+        display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: min-content min-content;
-        display: grid;
         justify-content: left;
+        padding-bottom: 0;
         border-right: 0;
     }
     &__heading {
@@ -40,9 +40,9 @@
 
         &--advanced-options {
             grid-auto-rows: min-content;
-            
+
             border: 1px solid $black;
-            @include querie_medium_mobile{
+            @include querie_medium_mobile {
                 grid-template-columns: 43vw;
             }
             @include querie_laptop {
@@ -58,8 +58,9 @@
     }
     &__input {
         height: 1em;
+
         color: $black;
-        &::placeholder{
+        &::placeholder {
             color: $carbon-grey;
         }
 
@@ -82,11 +83,13 @@
     }
     &__select {
         color: $ocean-blue;
+
         cursor: pointer;
         user-select: contain;
 
         &--active {
             color: $thunder-grey;
+
             cursor: default;
         }
     }
@@ -96,10 +99,11 @@
     }
     &__btn {
         //width, padding, border-radius
-        font-size: 0.9em;
         background: $ocean-blue;
-        font-family: 'Raleway', sans-serif;
         color: $snow-white;
+
+        font-size: 0.9em;
+        font-family: 'Raleway', sans-serif;
         &--settings {
             margin-right: 0.2em;
             @include button(auto,.7em,(2px 2px 0 0));
@@ -108,21 +112,23 @@
             }
             @include querie_laptop {
                 padding: 1.5em;
+
                 color: $carbon-grey;
                 background: $white-grey;
             }
         }
         &--settings-active {
             background-color: $lapis-blue;
-            @include querie_laptop{
-                color: $bright-blue;
+            @include querie_laptop {
                 border: 2px solid $bright-blue;
+
+                color: $bright-blue;
                 background: $white-grey;
             }
         }
         &--set-default {
-            @include button(min-content,.7em,2px);
             white-space: nowrap;
+            @include button(min-content,.7em,2px);
             @include querie_tablet {
                 margin: 0 0 0.2em 0.3em;
             };

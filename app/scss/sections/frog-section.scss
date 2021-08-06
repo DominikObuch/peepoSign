@@ -4,6 +4,7 @@
 
     padding: 10px;
     border-bottom: 1px solid $grey-line;
+
     @include querie_tablet{
         grid-area: 1 / 1 / 3 / 3;
     }
@@ -17,6 +18,7 @@
     }
     &__image {
         height: 60vw;
+
         @include querie_laptop {
             height: 50vw;
         }
@@ -27,30 +29,34 @@
     &__image-container{
         position: relative;
         bottom: 0;
+
         display: flex;
         justify-content: center;
     }
     &__sign-text{
-        height: 30%;
+        position: absolute;
+        top: 7%;
+        left: 8%;
+
         display: grid;
         align-items:center;
+        height: 30%;
         width: 85%;
-        left: 8%;
-        top: 7%;
-        position: absolute;
         overflow: hidden;
-        background: transparent;
         outline: none;
         border: none;
-
-        font-size: 3vw;
-        filter: blur(1px);
-        transform: rotate(6deg);
+        
+        background: transparent;
+        
         font-family: "Roboto Mono", monospace;
-        line-height: 1.2em;
         text-align: center;
+        line-height: 1.2em;
         word-wrap: break-word;
         text-overflow: ellipsis;
+        font-size: 3vw;
+        
+        filter: blur(1px);
+        transform: rotate(6deg);
         @include querie_laptop {
             font-size: 2vw;
         }
