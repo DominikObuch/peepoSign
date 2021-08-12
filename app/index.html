@@ -55,7 +55,7 @@
                 <h3 class="options__heading">Basic options</h2>
                 <div class="options__form">
                     <label class="options__label">Sign text:
-                        <input id="sign-text" class="options__input options__input--wide-text" type="text">
+                        <input id="signText" class="options__input options__input--wide-text" type="text">
                     </label>
                     <label class="options__label">Multiline text
                         <input type="checkbox" name="" checked id="multiline">
@@ -84,7 +84,7 @@
                 <!-- CHOOSE PANEL END-->
 
                 <!-- TEXT SETTINGS START-->
-                <div class="options__form options__form--advanced-options advanced-options">
+                <form class="options__form options__form--advanced-options advanced-options">
                     <label class="options__label">Font size:
                         <input id="fontSize" class="options__input options__input--small-number" type="number">
                         px</label>
@@ -118,13 +118,13 @@
                         px
                     </label>
                     <label class="options__label">Font blur:
-                        <input id="fontBlur" placeholder="0" class="options__input options__input--extra-small-number" type="number">
+                        <input id="fontBlur" placeholder="1" class="options__input options__input--extra-small-number" type="number">
                         px</label>
                     <label class="options__label">Font family:
                         <input class="options__input options__input--wide-text" type="text">
                     </label>
-                    <button class="options__btn options__btn--set-default">Set to default</button>
-                </div>
+                    
+                </form>
                 <!-- TEXT SETTINGS END-->
 
                 <!-- ANIMATIONS START-->
@@ -171,6 +171,7 @@
                         </span>|
                         <span class="options__select  options__select--active" tabindex="0">wood
                     </label>
+                    <button id="setToDefault" class="options__btn options__btn--set-default">Set to default</button>
                 </div>
                 <!-- OTHER SETTINGS END-->
             </section>

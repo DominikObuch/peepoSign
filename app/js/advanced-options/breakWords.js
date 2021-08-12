@@ -1,8 +1,17 @@
-const breakWordsEl = document.getElementById("breakWords");
-breakWordsEl.addEventListener("change",function(){
-    if(this.checked){
-        textOnSignEl.style.wordBreak = "break-all";
-    }else{
-        textOnSignEl.style.wordBreak = "unset";
-    }
-})
+function checkBreakWords(el) {
+    options.breakWords = el.target.checked
+        ? true
+        : false;
+}
+function updateBreakWords() {
+    elements.textOnSignEl.style.wordBreak = options.breakWords
+        ? "break-all"
+        : "unset";
+
+}
+document
+    .getElementById("breakWords")
+    .addEventListener("change", function (el) {
+        checkBreakWords(el);
+        updateBreakWords();
+    });

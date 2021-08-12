@@ -1,44 +1,68 @@
-let resolutionWidthEl = document.getElementById("resolutionWidth")
-let resolutionHeightEl = document.getElementById("resolutionHeight")
-let proportion = 508/469;
-function setMaxImageWidth(){
-    if(resolutionWidthEl.value > document.getElementById("frogSection").offsetWidth){
-        resolutionWidthEl.value = document.getElementById("frogSection").offsetWidth;
+
+let proportion = 508 / 469;
+function setMaxImageWidth() {
+    if (options.width > document.getElementById("frogSection").offsetWidth) {
+        options.width = document.getElementById("frogSection").offsetWidth
     }
 }
-function removeMinusNumbers(){
-    if(resolutionWidthEl.value.includes("-")){
-        resolutionWidthEl.value = resolutionWidthEl.value.replace("-","");
-    }
-    if(resolutionHeightEl.value.includes("-")){
-        resolutionHeightEl.value = resolutionHeightEl.value.replace("-","");
+function setMaxImageHeight() {
+    if (options.height > Math.round(proportion * + document.getElementById("frogSection").offsetWidth)) {
+        options.height = Math.round(proportion * + document.getElementById("frogSection").offsetWidth);
     }
 }
-function setMaxImageHeight(){
-    if(resolutionHeightEl.value > Math.round(proportion * +document.getElementById("frogSection").offsetWidth)){
-        resolutionHeightEl.value = Math.round(proportion * +document.getElementById("frogSection").offsetWidth);
+function removeMinusAxis() {
+    if (options.width.toString().includes("-")) {
+        options.width = options
+            .width
+            .replace("-", "")
+    }
+    if (options.height.toString().includes("-")) {
+        options.height = options
+            .height
+            .replace("-", "")
     }
 }
-function handleEmptyAxis(){
-    if(resolutionHeightEl.value === ""){
-        document.getElementById("frogImage").style.height = resolutionWidthEl.value * proportion  +"px";
-        resolutionHeightEl.placeholder = Math.round(resolutionWidthEl.value * proportion);
+
+function handleEmptyAxis() {
+    if (options.height === "") {
+        elements.frogImageEl.style.height = "auto";
+        elements.resolutionHeightEl.placeholder = options.width !== ""
+            ? `${Math.round(options.width * proportion)}px`
+            : "height"
     }
-    if(resolutionWidthEl.value === ""){
-        document.getElementById("frogImage").style.width = resolutionHeightEl.value / proportion  +"px";
-        resolutionWidthEl.placeholder = Math.round(resolutionHeightEl.value / proportion);
+    if (options.width === "") {
+        elements.frogImageEl.style.width = "auto";
+        elements.resolutionWidthEl.placeholder = options.height !== ""
+            ? `${Math.round(options.height / proportion)}px`
+            : "width";
     }
 }
-resolutionHeightEl.addEventListener("input",function(){
-    removeMinusNumbers()
-    setMaxImageHeight();
-    document.getElementById("frogImage").style.height = this.value +"px";
-    handleEmptyAxis()
-})
-resolutionWidthEl.addEventListener("input",function(){
-    console.log("yea")
-    removeMinusNumbers();
+
+function checkWidth() {
+    options.width = elements.resolutionWidthEl.value;
+}
+function checkHeight() {
+    options.height = elements.resolutionHeightEl.value;
+}
+function updateWidth() {
+    elements.frogImageEl.style.width = options.width + "px";
+    elements.resolutionWidthEl.value = options.width;
+
+    elements.frogImageEl.style.height = options.height + "px";
+    elements.resolutionHeightEl.value = options.height;
+}
+elements.resolutionHeightEl
+    .addEventListener("input", function () {
+        checkHeight();
+        removeMinusAxis();
+        setMaxImageHeight();
+        handleEmptyAxis();
+        updateWidth();
+    })
+elements.resolutionWidthEl.addEventListener("input", function () {
+    checkWidth();
+    removeMinusAxis();
     setMaxImageWidth();
-    document.getElementById("frogImage").style.width = this.value +"px";
-    handleEmptyAxis()
+    handleEmptyAxis();
+    updateWidth();
 })

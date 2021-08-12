@@ -2,7 +2,7 @@ function capture() {
     const captureEl = document.querySelector('#capture')
     html2canvas(captureEl, {
         scrollY: -window.scrollY,
-        backgroundColor: null
+        backgroundColor: options.backgroundColor
     }).then(canvas => {
         document
             .body
@@ -14,7 +14,7 @@ function capture() {
             .toDataURL('image/png')
             .replace('image/png', 'image/octet-stream')
         const a = document.createElement('a')
-        a.setAttribute('download', 'my-image.png')
+        a.setAttribute('download', 'peepoSign.png')
         a.setAttribute('href', image)
         a.click()
         canvas.remove()

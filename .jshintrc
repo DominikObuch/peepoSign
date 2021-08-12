@@ -24,7 +24,7 @@
     "nonew"         : false,     // Prohibit use of constructors for side-effects.
     "plusplus"      : false,     // Prohibit use of `++` & `--`.
     "quotmark"      : true,     // Force consistency of quotemarks
-    "undef"         : true,     // Require all non-global variables be declared before they are used.
+    "undef"         : false,     // Require all non-global variables be declared before they are used.
     "strict"        : false,     // Require `use strict` pragma in every file.
     "trailing"      : true,     // Prohibit trailing whitespaces.
     "unused"        : false,     // Warn when you define and never use your variables

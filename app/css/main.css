@@ -1,7 +1,7 @@
 .header__heading {
+  color: #FCF7F8;
   font-family: "Balsamiq Sans";
   font-weight: normal;
-  color: #FCF7F8;
   font-size: 1.7em;
 }
 
@@ -109,25 +109,26 @@
   justify-content: center;
 }
 .frog-section__sign-text {
-  height: 30%;
+  position: absolute;
+  top: 7%;
+  left: 8%;
   display: grid;
   align-items: center;
+  height: 30%;
   width: 85%;
-  left: 8%;
-  top: 7%;
-  position: absolute;
   overflow: hidden;
-  background: transparent;
   outline: none;
   border: none;
-  font-size: 3vw;
-  filter: blur(1px);
-  transform: rotate(6deg);
+  background: transparent;
   font-family: "Roboto Mono", monospace;
-  line-height: 1.2em;
   text-align: center;
+  line-height: 1.2em;
   word-wrap: break-word;
   text-overflow: ellipsis;
+  font-size: 3vw;
+  line-break: anywhere;
+  filter: blur(1px);
+  transform: rotate(6deg);
 }
 @media only screen and (min-width: 1024px) {
   .frog-section__sign-text {
@@ -182,12 +183,12 @@
 }
 @media only screen and (min-width: 1024px) {
   .options {
-    padding-bottom: 0;
+    display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: -webkit-min-content -webkit-min-content;
     grid-template-rows: min-content min-content;
-    display: grid;
     justify-content: left;
+    padding-bottom: 0;
     border-right: 0;
   }
 }
@@ -272,10 +273,10 @@
   display: flex;
 }
 .options__btn {
-  font-size: 0.9em;
   background: #0341EA;
-  font-family: "Raleway", sans-serif;
   color: #FCF7F8;
+  font-size: 0.9em;
+  font-family: "Raleway", sans-serif;
 }
 .options__btn--settings {
   margin-right: 0.2em;
@@ -300,12 +301,13 @@
 }
 @media only screen and (min-width: 1024px) {
   .options__btn--settings-active {
-    color: #0A65ED;
     border: 2px solid #0A65ED;
+    color: #0A65ED;
     background: #D4D4D4;
   }
 }
 .options__btn--set-default {
+  white-space: nowrap;
   width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
@@ -313,7 +315,6 @@
   border: unset;
   border-radius: 2px;
   cursor: pointer;
-  white-space: nowrap;
 }
 @media only screen and (min-width: 768px) {
   .options__btn--set-default {

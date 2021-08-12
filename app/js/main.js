@@ -1,67 +1,147 @@
-"use strict";
+let options = {
+    //basic options variables
+    signText: '',
+    selectedPanel: {
+        old: 0,
+        current: 0
+    },
+    multilineText: true,
+    width: '',
+    height: '',
+    //first panel of adv options variables
+    fontSize: '',
+    breakWords: false,
+    verticalAlign: 'center',
+    horizontalAlign: 'center',
+    offset: '',
+    fontBlur: '1',
+    fontFamily: '',
+    backgroundColor: null
+}
+const elements = {
+    textOnSignEl: document.getElementById('text-on-sign'),
+    frogImageEl: document.getElementById("frogImage"),
+    inputSignTextEl: document.getElementById('signText'),
+    fontSizeInputEl: document.getElementById('fontSize'),
+    offsetOptionsEls: document.getElementsByClassName('offsetOptions'),
+    choosePanelEl: document.getElementsByClassName('options__btn--settings'),
+    advFormEl: document.getElementsByClassName('advanced-options'),
+    fontBlurEl: document.getElementById('fontBlur'),
+    horizontalAlignEls: document.querySelectorAll('#horizontalAlign span'),
+    verticalAlignEls: document.querySelectorAll('#verticalAlign span'),
+    setToDefaultEl: document.getElementById('setToDefault'),
+    resolutionWidthEl: document.getElementById("resolutionWidth"),
+    resolutionHeightEl: document.getElementById("resolutionHeight")
+}
+function checkBreakWords(el) {
+    options.breakWords = el.target.checked
+        ? true
+        : false;
+}
+function updateBreakWords() {
+    elements.textOnSignEl.style.wordBreak = options.breakWords
+        ? "break-all"
+        : "unset";
 
-const textOnSignEl = document.getElementById("text-on-sign");
-const inputSignTextEl = document.getElementById("sign-text");
-const fontSizeInputEl = document.getElementById("fontSize");
-const offsetOptionsEls = document.getElementsByClassName("offsetOptions");
-const breakWordsEl = document.getElementById("breakWords");
-breakWordsEl.addEventListener("change",function(){
-    if(this.checked){
-        textOnSignEl.style.wordBreak = "break-all";
-    }else{
-        textOnSignEl.style.wordBreak = "unset";
-    }
-})
-const choosePanelEl = document.getElementsByClassName("options__btn--settings");
-let selectedPanel = 0;
-const advFormEl = document.getElementsByClassName("advanced-options");
-
-for (let i = 0; i < 3; i++) {
-    choosePanelEl[i].addEventListener("click", () => {
-        if (i !== selectedPanel) {
-            choosePanelEl[selectedPanel]
-                .classList
-                .remove("options__btn--settings-active");
-            choosePanelEl[i]
-                .classList
-                .add("options__btn--settings-active");
-
-            advFormEl[selectedPanel]
-                .classList
-                .add("display-none");
-            advFormEl[i]
-                .classList
-                .remove("display-none");
-
-            selectedPanel = i;
-        }
+}
+document
+    .getElementById("breakWords")
+    .addEventListener("change", function (el) {
+        checkBreakWords(el);
+        updateBreakWords();
     });
-}
-const fontBlurEl = document.getElementById("fontBlur");
-fontBlurEl.addEventListener("input",function(){
-    textOnSignEl.style.filter = `blur(${fontBlurEl.value}px)`;
-})
-let handlehorizontalAlign = () => {
-    let horizontalAlignEl = document.querySelectorAll("#horizontalAlign span");
-    let horizontalAlignActive = 1; // which one is currently active
-    for (let i = 0, il = horizontalAlignEl.length; i < il; i++) {
-        horizontalAlignEl[i]
-            .addEventListener("click", function () {
-                if (!this.classList.contains("options__select--active")) {
-                    this
-                        .classList
-                        .add("options__select--active");
-                    textOnSignEl.style.textAlign = this.dataset.horizontalalign;
-                    horizontalAlignEl[horizontalAlignActive]
-                        .classList
-                        .remove("options__select--active");
-                    horizontalAlignActive = i
-                }
+function updateCategory() {
+    elements
+        .choosePanelEl[options.selectedPanel.old]
+        .classList
+        .remove("options__btn--settings-active");
 
-            })
+    elements
+        .choosePanelEl[options.selectedPanel.current]
+        .classList
+        .add("options__btn--settings-active");
+
+    elements.advFormEl[options.selectedPanel.old]
+        .classList
+        .add("display-none");
+    elements.advFormEl[options.selectedPanel.current]
+        .classList
+        .remove("display-none");
+}
+function checkCategory(i) {
+    options.selectedPanel.old = options.selectedPanel.current;
+    options.selectedPanel.current = i;
+
+}
+for (let i = 0; i < 3; i++) {
+    elements
+        .choosePanelEl[i]
+        .addEventListener("click", function () {
+            checkCategory(i);
+            updateCategory();
+        });
+}
+elements
+    .fontBlurEl
+    .addEventListener("input", function () {
+        checkFontBlur();
+        updateFontBlur();
+        updateInputBlur();
+    })
+
+function updateFontBlur() {
+    elements.textOnSignEl.style.filter = `blur(${options.fontBlur}px)`;
+}
+function checkFontBlur() {
+    options.fontBlur = elements.fontBlurEl.value
+    if (options.fontBlur < 0) {
+        options.fontBlur = 0
+    } else if (options.fontBlur > 99) {
+        options.fontBlur = 99
+    } else if (options.fontBlur == "") {
+        options.fontBlur = 0
     }
 }
-handlehorizontalAlign();
+function updateInputBlur() {
+    elements.fontBlurEl.value = parseFloat(options.fontBlur)
+}
+for (let i = 0; i <= 2; i++) {
+    elements
+        .horizontalAlignEls[i]
+        .addEventListener("click", function (el) {
+            checkHorizontalAlign(el);
+            updateHorizontalAlign();
+        })
+}
+
+function updateHorizontalAlign() {
+    let currentActive = null;
+    for (let i = 0; i <= 2; i++) {
+        elements
+            .horizontalAlignEls[i]
+            .classList
+            .contains("options__select--active")
+            ? elements
+                .horizontalAlignEls[i]
+                .classList
+                .remove("options__select--active")
+            : null;
+        if (elements.horizontalAlignEls[i].dataset.horizontalalign === options.horizontalAlign) {
+            currentActive = i
+        }
+
+    }
+    elements
+        .horizontalAlignEls[currentActive]
+        .classList
+        .add("options__select--active");
+        elements.textOnSignEl.style.textAlign = options.horizontalAlign
+
+}
+
+function checkHorizontalAlign(el) {
+    options.horizontalAlign = el.target.dataset.horizontalalign;
+}
 function handleOffsets() {
     let offsets = ""
     for (let i = 0; i < 4; i++) {
@@ -72,8 +152,36 @@ function handleOffsets() {
     textOnSignEl.style.padding = offsets
 }
 for (let i = 0; i < 4; i++) {
-    offsetOptionsEls[i].addEventListener("input", handleOffsets);
+    elements.offsetOptionsEls[i].addEventListener("input", handleOffsets);
 }
+function checkOffsets(){
+    let offsets = "";
+    for (let i = 0; i < 4; i++) {
+        offsets += elements.offsetOptionsEls[i].value === ""
+            ? "0 "
+            : offsetOptionsEls[i].value + "px "
+    }
+    options.offset = offsets;
+}
+function updateOffsets(){
+    textOnSignEl.style.padding = options.offset
+}
+function setToDefaultOptions(){
+    options.multilineText = true;
+    options.fontSize = '';
+    options.breakWords = true;
+    options.verticalAlign = 'center';
+    options.horizontalAlign= 'center';
+    options.offset = '';
+    options.fontBlur = '';
+    options.fontBlur = '';
+    options.width = '';
+    options.height = '';
+    options.backgroundColor = null;
+}
+elements.setToDefaultEl.addEventListener('click',function(){
+    setToDefaultOptions();
+})
 let handleVerticalAlign = () => {
     let verticalAlignEl = document.querySelectorAll("#verticalAlign span");
     let verticalAlignActive = 1; // which one is currently active
@@ -84,7 +192,6 @@ let handleVerticalAlign = () => {
                     this
                         .classList
                         .add("options__select--active");
-                    console.dir(this)
                     textOnSignEl.style.alignItems = this.dataset.verticalalign;
                     verticalAlignEl[verticalAlignActive]
                         .classList
@@ -96,11 +203,51 @@ let handleVerticalAlign = () => {
     }
 }
 handleVerticalAlign();
+
+
+
+for (let i = 0; i <= 2; i++) {
+    elements
+        .verticalAlignEls[i]
+        .addEventListener("click", function (el) {
+            checkVerticalAlign(el);
+            updateVerticalAlign();
+        })
+}
+
+function updateVerticalAlign() {
+    let currentActive = null;
+    for (let i = 0; i <= 2; i++) {
+        elements
+            .verticalAlignEls[i]
+            .classList
+            .contains("options__select--active")
+            ? elements
+                .verticalAlignEls[i]
+                .classList
+                .remove("options__select--active")
+            : null;
+        if (elements.verticalAlignEls[i].dataset.verticalalign === options.verticalAlign) {
+            currentActive = i
+        }
+
+    }
+    elements
+        .verticalAlignEls[currentActive]
+        .classList
+        .add("options__select--active");
+        elements.textOnSignEl.style.alignItems = options.verticalAlign
+
+}
+
+function checkVerticalAlign(el) {
+    options.verticalAlign = el.target.dataset.verticalalign;
+}
 function capture() {
     const captureEl = document.querySelector('#capture')
     html2canvas(captureEl, {
         scrollY: -window.scrollY,
-        backgroundColor: null
+        backgroundColor: options.backgroundColor
     }).then(canvas => {
         document
             .body
@@ -112,7 +259,7 @@ function capture() {
             .toDataURL('image/png')
             .replace('image/png', 'image/octet-stream')
         const a = document.createElement('a')
-        a.setAttribute('download', 'my-image.png')
+        a.setAttribute('download', 'peepoSign.png')
         a.setAttribute('href', image)
         a.click()
         canvas.remove()
@@ -121,110 +268,15 @@ function capture() {
 
 const btn = document.querySelector('#download')
 btn.addEventListener('click', capture)
-let shouldAdjustFontSize = true;
-fontSizeInputEl.addEventListener("input", function () {
-    if (this.value === "") {
-        adjustFontSizePeepo(document.getElementById("text-on-sign"), inputSignTextEl.value);
-        shouldAdjustFontSize = true;
-    } else {
-        shouldAdjustFontSize = false;
-        document
-            .getElementById("text-on-sign")
-            .style
-            .fontSize = this.value + "px"
-    }
-})
-const observeSignChanges = new MutationObserver(function(){
-    fontSizeInputEl.placeholder = Math.round(window.getComputedStyle(textOnSignEl).fontSize.replace("px",""));
-    shouldAdjustFontSize ? adjustFontSizePeepo(textOnSignEl,textOnSignEl.textContent):null;
-})
-observeSignChanges.observe(textOnSignEl,{childList:true,attributes:true, characterData: true,subtree:true})
-adjustFontSizePeepo(textOnSignEl, "")
-
-function adjustFontSizePeepo(el, text) {
-
-    let isDesktop = window.screen.width >= 1024
-        ? true
-        : false;
-    if (isDesktop) {
-        if (text.length <= 6) {
-            el.style.fontSize = "7vw";
-        } else if (text.length <= 19) {
-            el.style.fontSize = "6vw";
-        } else if (text.length >= 20) {
-            el.style.fontSize = "3.5vw";
-        }
-    } else {
-        if (text.length <= 7) {
-            el.style.fontSize = "10vw";
-        } else if (text.length <= 15) {
-            el.style.fontSize = "6vw";
-        } else if (text.length >= 16) {
-            el.style.fontSize = "4vw";
-        }
-    }
-}
-
-document.getElementById("multiline").addEventListener("input", () => {
-    if(document.getElementById("multiline").checked){
-        textOnSignEl.style.whiteSpace = "normal";
-    }
-    else{
-        textOnSignEl.style.whiteSpace = "nowrap";
-    }
-})
-let resolutionWidthEl = document.getElementById("resolutionWidth")
-let resolutionHeightEl = document.getElementById("resolutionHeight")
-let proportion = 508/469;
-function setMaxImageWidth(){
-    if(resolutionWidthEl.value > document.getElementById("frogSection").offsetWidth){
-        resolutionWidthEl.value = document.getElementById("frogSection").offsetWidth;
-    }
-}
-function removeMinusNumbers(){
-    if(resolutionWidthEl.value.includes("-")){
-        resolutionWidthEl.value = resolutionWidthEl.value.replace("-","");
-    }
-    if(resolutionHeightEl.value.includes("-")){
-        resolutionHeightEl.value = resolutionHeightEl.value.replace("-","");
-    }
-}
-function setMaxImageHeight(){
-    if(resolutionHeightEl.value > Math.round(proportion * +document.getElementById("frogSection").offsetWidth)){
-        resolutionHeightEl.value = Math.round(proportion * +document.getElementById("frogSection").offsetWidth);
-    }
-}
-function handleEmptyAxis(){
-    if(resolutionHeightEl.value === ""){
-        document.getElementById("frogImage").style.height = resolutionWidthEl.value * proportion  +"px";
-        resolutionHeightEl.placeholder = Math.round(resolutionWidthEl.value * proportion);
-    }
-    if(resolutionWidthEl.value === ""){
-        document.getElementById("frogImage").style.width = resolutionHeightEl.value / proportion  +"px";
-        resolutionWidthEl.placeholder = Math.round(resolutionHeightEl.value / proportion);
-    }
-}
-resolutionHeightEl.addEventListener("input",function(){
-    removeMinusNumbers()
-    setMaxImageHeight();
-    document.getElementById("frogImage").style.height = this.value +"px";
-    handleEmptyAxis()
-})
-resolutionWidthEl.addEventListener("input",function(){
-    console.log("yea")
-    removeMinusNumbers();
-    setMaxImageWidth();
-    document.getElementById("frogImage").style.width = this.value +"px";
-    handleEmptyAxis()
-})
-
-inputSignTextEl.addEventListener("input", function (el) {
-    document.getElementById("text-on-sign").textContent = el.target.value;
+elements.inputSignTextEl.addEventListener("input", function (el) {
+    options.signText = el.target.value;
+    elements.textOnSignEl.textContent = options.signText;
+    addBrIfEmpty(elements.textOnSignEl,elements.textOnSignEl.textContent);
 });
-
-textOnSignEl.addEventListener("input", function (el) {
-    addBrIfEmpty(el.target,el.target.textContent)
-    document.getElementById("sign-text").value = document.getElementById("text-on-sign").textContent;
+elements.textOnSignEl.addEventListener("input", function () {
+    options.signText = elements.textOnSignEl.textContent;
+    document.getElementById("signText").value = options.signText;
+    addBrIfEmpty(elements.textOnSignEl,elements.textOnSignEl.textContent);
 })
 function addBrIfEmpty(el,text){
     if(text === ""){
@@ -233,26 +285,141 @@ function addBrIfEmpty(el,text){
 }
 
 
+let shouldAdjustFontSize = true;
+fontSizeInputEl.addEventListener("input", function () {
+    if (this.value === "") {
+        adjustFontSizePeepo();
+        updateFontSize();
+        shouldAdjustFontSize = true;
+    } else {
+        shouldAdjustFontSize = false;
+        options.fontSize = this.value + "px";
+        updateFontSize();
+    }
+})
+const observeSignChanges = new MutationObserver(function () {
+    fontSizeInputEl.placeholder = Math.round(window.getComputedStyle(textOnSignEl).fontSize.replace("px", ""));
+    if (shouldAdjustFontSize) {
+        adjustFontSizePeepo();
+        updateFontSize();
+    }
+})
+observeSignChanges.observe(textOnSignEl, {
+    childList: true,
+    attributes: true,
+    characterData: true,
+    subtree: true
+})
 
-// function smallRandomNumber(){     return +(Math.random()*0.2).toFixed(2) }
-// function animationRandomizer(el){     animationCount = 20000 /*
-// Math.round((Math.random()+1)*3) */     console.log(animationCount)
-// el.style.animationIterationCount = `1, ${animationCount},1`
-// el.style.animationTimingFunction= `ease, cubic-bezier(${.25 +
-// smallRandomNumber()}, ${.1 + smallRandomNumber()}, ${.25 +
-// smallRandomNumber()}, ${1 + smallRandomNumber()})` jumpingAnimationDuration =
-// (Math.random()+0.5*1.2).toFixed(2) el.style.animationDuration =
-// `1s,${jumpingAnimationDuration}s,1s` el.style.animationDelay = `0s, 1s,
-// ${(jumpingAnimationDuration*animationCount)+1}s` } .peepo {     position:
-// absolute;     bottom: 0;     display: flex;     justify-content: center;
-// animation-name: entering, jumping, leaving; } .peepo--image {     width:
-// 350px; } .peepo--text {     font-family: 'Roboto Mono', monospace;
-// line-height: 1.2em;     max-width: 300px;     position: absolute; padding:
-// 10%;     padding-top: 20%;     padding-bottom: 0;     max-height: 26%;
-// text-align: center;     transform: rotate(7deg);     overflow: hidden;
-// word-wrap: break-word;     text-overflow: ellipsis; } @keyframes leaving{ to{
-//         transform: translateY(100%);     } } @keyframes entering {     0% {
-//     transform: translateY(100%);     }     100% {     transform:
-// translateY(0%);     } } @keyframes jumping {     50% { transform:
-// translateY(-10%);     }     100% {         transform: translateY(0%);     } }
+function adjustFontSizePeepo() {
+
+    let isDesktop = window.matchMedia('(min-width: 1024px)')
+    if (isDesktop) {
+        if (options.signText.length <= 6) {
+            options.fontSize = "7vw";
+        } else if (options.signText.length <= 19) {
+            options.fontSize = "6vw";
+        } else if (options.signText.length >= 20) {
+            options.fontSize = "3.5vw";
+        }
+    } else {
+        if (options.signText.length <= 7) {
+            options.fontSize.fontSize = "10vw";
+        } else if (options.signText.length <= 15) {
+            options.fontSize = "6vw";
+        } else if (options.signText.length >= 16) {
+            options.fontSize = "4vw";
+        }
+    }
+}
+function updateFontSize() {
+    elements.textOnSignEl.style.fontSize = options.fontSize;
+}
+
+adjustFontSizePeepo();
+updateFontSize();
+function checkMultilineText() {
+    if (document.getElementById("multiline").checked) {
+        options.multilineText = "normal";
+    } else {
+        options.multilineText = "nowrap";
+    }
+}
+function updateMultilineText() {
+    textOnSignEl.style.whiteSpace = options.multilineText;
+}
+document
+    .getElementById("multiline")
+    .addEventListener("input", function () {
+        checkMultilineText();
+        updateMultilineText();
+    });
+
+let proportion = 508 / 469;
+function setMaxImageWidth() {
+    if (options.width > document.getElementById("frogSection").offsetWidth) {
+        options.width = document.getElementById("frogSection").offsetWidth
+    }
+}
+function setMaxImageHeight() {
+    if (options.height > Math.round(proportion * + document.getElementById("frogSection").offsetWidth)) {
+        options.height = Math.round(proportion * + document.getElementById("frogSection").offsetWidth);
+    }
+}
+function removeMinusAxis() {
+    if (options.width.toString().includes("-")) {
+        options.width = options
+            .width
+            .replace("-", "")
+    }
+    if (options.height.toString().includes("-")) {
+        options.height = options
+            .height
+            .replace("-", "")
+    }
+}
+
+function handleEmptyAxis() {
+    if (options.height === "") {
+        elements.frogImageEl.style.height = "auto";
+        elements.resolutionHeightEl.placeholder = options.width !== ""
+            ? `${Math.round(options.width * proportion)}px`
+            : "height"
+    }
+    if (options.width === "") {
+        elements.frogImageEl.style.width = "auto";
+        elements.resolutionWidthEl.placeholder = options.height !== ""
+            ? `${Math.round(options.height / proportion)}px`
+            : "width";
+    }
+}
+
+function checkWidth() {
+    options.width = elements.resolutionWidthEl.value;
+}
+function checkHeight() {
+    options.height = elements.resolutionHeightEl.value;
+}
+function updateWidth() {
+    elements.frogImageEl.style.width = options.width + "px";
+    elements.resolutionWidthEl.value = options.width;
+
+    elements.frogImageEl.style.height = options.height + "px";
+    elements.resolutionHeightEl.value = options.height;
+}
+elements.resolutionHeightEl
+    .addEventListener("input", function () {
+        checkHeight();
+        removeMinusAxis();
+        setMaxImageHeight();
+        handleEmptyAxis();
+        updateWidth();
+    })
+elements.resolutionWidthEl.addEventListener("input", function () {
+    checkWidth();
+    removeMinusAxis();
+    setMaxImageWidth();
+    handleEmptyAxis();
+    updateWidth();
+})
 //# sourceMappingURL=sourcemaps/main.js.map
