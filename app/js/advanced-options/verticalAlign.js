@@ -8,7 +8,7 @@ let handleVerticalAlign = () => {
                     this
                         .classList
                         .add("options__select--active");
-                    textOnSignEl.style.alignItems = this.dataset.verticalalign;
+                    elements.textOnSignEl.style.alignItems = this.dataset.verticalalign;
                     verticalAlignEl[verticalAlignActive]
                         .classList
                         .remove("options__select--active");

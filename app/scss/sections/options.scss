@@ -46,7 +46,7 @@
                 grid-template-columns: 43vw;
             }
             @include querie_laptop {
-                height: 20.5em;
+                height: 15em;
             }
         }
         @include querie_tablet {

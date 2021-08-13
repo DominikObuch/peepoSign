@@ -1,23 +1,25 @@
 let shouldAdjustFontSize = true;
-fontSizeInputEl.addEventListener("input", function () {
-    if (this.value === "") {
-        adjustFontSizePeepo();
-        updateFontSize();
-        shouldAdjustFontSize = true;
-    } else {
-        shouldAdjustFontSize = false;
-        options.fontSize = this.value + "px";
-        updateFontSize();
-    }
-})
+elements
+    .fontSizeInputEl
+    .addEventListener("input", function () {
+        if (this.value === "") {
+            adjustFontSizePeepo();
+            updateFontSize();
+            shouldAdjustFontSize = true;
+        } else {
+            shouldAdjustFontSize = false;
+            options.fontSize = this.value + "px";
+            updateFontSize();
+        }
+    })
 const observeSignChanges = new MutationObserver(function () {
-    fontSizeInputEl.placeholder = Math.round(window.getComputedStyle(textOnSignEl).fontSize.replace("px", ""));
+    elements.fontSizeInputEl.placeholder = Math.round(window.getComputedStyle(elements.textOnSignEl).fontSize.replace("px", ""));
     if (shouldAdjustFontSize) {
         adjustFontSizePeepo();
         updateFontSize();
     }
 })
-observeSignChanges.observe(textOnSignEl, {
+observeSignChanges.observe(elements.textOnSignEl, {
     childList: true,
     attributes: true,
     characterData: true,

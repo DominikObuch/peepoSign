@@ -6,7 +6,7 @@ function checkMultilineText() {
     }
 }
 function updateMultilineText() {
-    textOnSignEl.style.whiteSpace = options.multilineText;
+    elements.textOnSignEl.style.whiteSpace = options.multilineText;
 }
 document
     .getElementById("multiline")
@@ -14,3 +14,6 @@ document
         checkMultilineText();
         updateMultilineText();
     });
+function defaultMultilineText(){
+    document.getElementById("multiline").checked = true;
+}

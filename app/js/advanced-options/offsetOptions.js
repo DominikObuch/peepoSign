@@ -1,11 +1,11 @@
 function handleOffsets() {
     let offsets = ""
     for (let i = 0; i < 4; i++) {
-        offsets += offsetOptionsEls[i].value === ""
+        offsets += elements.offsetOptionsEls[i].value === ""
             ? "0 "
-            : offsetOptionsEls[i].value + "px "
+            : elements.offsetOptionsEls[i].value + "px "
     }
-    textOnSignEl.style.padding = offsets
+    elements.textOnSignEl.style.padding = offsets
 }
 for (let i = 0; i < 4; i++) {
     elements.offsetOptionsEls[i].addEventListener("input", handleOffsets);

@@ -10,7 +10,6 @@ let options = {
     height: '',
     //first panel of adv options variables
     fontSize: '',
-    breakWords: false,
     verticalAlign: 'center',
     horizontalAlign: 'center',
     offset: '',
