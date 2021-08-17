@@ -12,7 +12,7 @@ let options = {
     fontSize: '',
     verticalAlign: 'center',
     horizontalAlign: 'center',
-    offset: '',
+    offsets: [0,0,0,0],
     fontBlur: '1',
     fontFamily: '',
     backgroundColor: null

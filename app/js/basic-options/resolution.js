@@ -24,6 +24,7 @@ function removeMinusAxis() {
 }
 
 function handleEmptyAxis() {
+
     if (options.height === "") {
         elements.frogImageEl.style.height = "auto";
         elements.resolutionHeightEl.placeholder = options.width !== ""
@@ -36,6 +37,10 @@ function handleEmptyAxis() {
             ? `${Math.round(options.height / proportion)}px`
             : "width";
     }
+    if(options.height === "" && options.width === ""){
+        elements.frogImageEl.style.height = "";
+        elements.frogImageEl.style.width = "";
+    }
 }
 
 function checkWidth() {
@@ -44,7 +49,7 @@ function checkWidth() {
 function checkHeight() {
     options.height = elements.resolutionHeightEl.value;
 }
-function updateWidth() {
+function updateResolution() {
     elements.frogImageEl.style.width = options.width + "px";
     elements.resolutionWidthEl.value = options.width;
 
@@ -57,12 +62,12 @@ elements.resolutionHeightEl
         removeMinusAxis();
         setMaxImageHeight();
         handleEmptyAxis();
-        updateWidth();
+        updateResolution();
     })
 elements.resolutionWidthEl.addEventListener("input", function () {
     checkWidth();
     removeMinusAxis();
     setMaxImageWidth();
     handleEmptyAxis();
-    updateWidth();
+    updateResolution();
 })

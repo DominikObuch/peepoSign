@@ -53,3 +53,6 @@ function updateFontSize() {
 
 adjustFontSizePeepo();
 updateFontSize();
+elements.frogImageEl.addEventListener("click",()=>{
+    elements.textOnSignEl.focus();
+})

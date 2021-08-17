@@ -17,7 +17,10 @@
         border-right: 1px solid $grey-line;
     }
     &__image {
+
         height: 60vw;
+
+        user-select: none;
 
         @include querie_laptop {
             height: 50vw;
@@ -56,7 +59,6 @@
         font-size: 3vw;
         line-break: anywhere;
         
-        filter: blur(1px);
         transform: rotate(6deg);
         @include querie_laptop {
             font-size: 2vw;
