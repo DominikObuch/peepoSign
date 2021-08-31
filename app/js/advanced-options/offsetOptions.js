@@ -13,7 +13,6 @@ function updateOffsets() {
 }
 function updateOffsetsInputs() {
     for (let i = 0; i < elements.offsetOptionsEls.length; i++) {
-        console.log(options.offsets[i] === 0)
         elements.offsetOptionsEls[i].value = options.offsets[i] === 0 ? "": options.offsets[i];
     }
 }

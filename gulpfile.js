@@ -124,6 +124,7 @@ function minCss(done) {
 }
 
 exports.scss = scss;
-exports.watch = watchFiles;
+exports.watch = series(scripts,watchFiles);
+exports.clean = cleanDist;
 exports.js = scripts;
 exports.build = series(parallel(scss, cleanDist), parallel(minHtml, minJs, minCss));

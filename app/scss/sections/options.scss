@@ -40,6 +40,7 @@
         padding: 0 0 0.3em 0.3em;
 
         font-size: 1.1em;
+        font-weight: 300;
         @extend %label-font;
 
         &--advanced-options {
@@ -63,6 +64,7 @@
     &__input {
         height: 1em;
 
+        font-weight: 300;
         color: $black;
         &::placeholder {
             color: $carbon-grey;
@@ -101,12 +103,20 @@
         display: flex;
 
     }
+    &__font-family{
+        color:$thunder-grey;
+        font-weight: 300;
+        height: 1.5em;
+        & option{
+        }
+    }
     &__btn {
         //width, padding, border-radius
         background: $ocean-blue;
         color: $snow-white;
 
         font-size: 0.9em;
+        font-weight: 600;
         font-family: 'Raleway', sans-serif;
         &--settings {
             margin-right: 0.2em;
