@@ -9,25 +9,26 @@ const concat = require('gulp-concat');
 const htmlmin = require('gulp-htmlmin');
 const del = require('del');
 const uglify = require('gulp-uglify');
+const image = require('gulp-image');
 
 const config = {
-  app: {
-      jsFiles: './app/js/**/**.js',
-      scssFiles: './app/scss/**/**.scss',
-      cssFiles: './app/css/**.css',
-      htmlFiles: 'app/**.html',
-      imageFiles: './app/img/**',
-      jsDirectory: './app/js',
-      scssDirectory: './app/scss',
-      cssDirectory: './app/css',
-      base: './app/'
-  },
-  dist: {
-      base: './dist',
-      cssDirectory: './dist/css',
-      jsDirectory: './dist/js',
-      imageDirectory: './dist/images'
-  }
+    app: {
+        jsFiles: './app/js/**/**.js',
+        scssFiles: './app/scss/**/**.scss',
+        cssFiles: './app/css/**.css',
+        htmlFiles: 'app/**.html',
+        imageFiles: './app/img/**',
+        jsDirectory: './app/js',
+        scssDirectory: './app/scss',
+        cssDirectory: './app/css',
+        base: './app/'
+    },
+    dist: {
+        base: './dist',
+        cssDirectory: './dist/css',
+        jsDirectory: './dist/js',
+        imageDirectory: './dist/img'
+    }
 };
 
 //browsersync config functions
@@ -37,7 +38,7 @@ function browserSyncInit(done) {
             baseDir: config.app.base
         },
         open: false,
-        port: 3000,
+        port: 3000
     });
     if (done) {
         done();
@@ -61,7 +62,7 @@ function scss(done) {
         done();
     }
 }
-//merge all js files into one and add source maps for js 
+//merge all js files into one and add source maps for js
 function scripts(done) {
     del.sync(`${config.app.jsDirectory}/main.js`, {allowEmpty: true});
     src(config.app.jsFiles)
@@ -85,7 +86,7 @@ function watchFiles() {
     watch(`{config.app.imageDirectory}/**`, series(browserSyncReload));
 }
 
-//clean old build 
+//clean old build
 function cleanDist(done) {
     del.sync(config.dist.base, {
         dot: true,
@@ -97,7 +98,7 @@ function cleanDist(done) {
 }
 function minHtml(done) {
     src(config.app.htmlFiles)
-        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(htmlmin({collapseWhitespace: true, removeComments: true}))
         .pipe(dest(config.dist.base));
     if (done) {
         done();
@@ -116,15 +117,22 @@ function minJs(done) {
 }
 function minCss(done) {
     src(config.app.cssFiles)
-        .pipe(cleanCSS())
+    .pipe(cleanCSS({removeComments:true}))
         .pipe(dest(config.dist.cssDirectory));
     if (done) {
         done();
     }
 }
-
+function imageMin(done) {
+    src(`${config.app.imageFiles}/**`)
+        .pipe(image())
+        .pipe(dest(config.dist.imageDirectory))
+    if (done) {
+        done()
+    }
+}
 exports.scss = scss;
-exports.watch = series(scripts,watchFiles);
+exports.watch = series(scripts, watchFiles);
 exports.clean = cleanDist;
 exports.js = scripts;
-exports.build = series(parallel(scss, cleanDist), parallel(minHtml, minJs, minCss));
+exports.build = series(parallel(scss, cleanDist), parallel(imageMin, minHtml, minJs, minCss));
