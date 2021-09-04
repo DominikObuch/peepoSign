@@ -23,11 +23,11 @@ const config = {
         cssDirectory: './app/css',
         base: './app/'
     },
-    dist: {
-        base: './dist',
-        cssDirectory: './dist/css',
-        jsDirectory: './dist/js',
-        imageDirectory: './dist/img'
+    docs: {
+        base: './docs',
+        cssDirectory: './docs/css',
+        jsDirectory: './docs/js',
+        imageDirectory: './docs/img'
     }
 };
 
@@ -87,8 +87,8 @@ function watchFiles() {
 }
 
 //clean old build
-function cleanDist(done) {
-    del.sync(config.dist.base, {
+function cleanDocs(done) {
+    del.sync(config.docs.base, {
         dot: true,
         allowEmpty: true
     });
@@ -99,7 +99,7 @@ function cleanDist(done) {
 function minHtml(done) {
     src(config.app.htmlFiles)
         .pipe(htmlmin({collapseWhitespace: true, removeComments: true}))
-        .pipe(dest(config.dist.base));
+        .pipe(dest(config.docs.base));
     if (done) {
         done();
     }
@@ -110,7 +110,7 @@ function minJs(done) {
     ], {allowEmpty: true})
         .pipe(concat('main.js'))
         .pipe(uglify())
-        .pipe(dest(config.dist.jsDirectory));
+        .pipe(dest(config.docs.jsDirectory));
     if (done) {
         done();
     }
@@ -118,7 +118,7 @@ function minJs(done) {
 function minCss(done) {
     src(config.app.cssFiles)
     .pipe(cleanCSS({removeComments:true}))
-        .pipe(dest(config.dist.cssDirectory));
+        .pipe(dest(config.docs.cssDirectory));
     if (done) {
         done();
     }
@@ -126,13 +126,13 @@ function minCss(done) {
 function imageMin(done) {
     src(`${config.app.imageFiles}/**`)
         .pipe(image())
-        .pipe(dest(config.dist.imageDirectory))
+        .pipe(dest(config.docs.imageDirectory))
     if (done) {
         done()
     }
 }
 exports.scss = scss;
 exports.watch = series(scripts, watchFiles);
-exports.clean = cleanDist;
+exports.clean = cleanDocs;
 exports.js = scripts;
-exports.build = series(parallel(scss, cleanDist), parallel(imageMin, minHtml, minJs, minCss));
+exports.build = series(parallel(scss, scripts, cleanDocs), parallel(imageMin, minHtml, minJs, minCss));

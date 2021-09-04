@@ -1,5 +1,5 @@
 node_modules
-dist
+docs
 app/js/main.js
 app/js/sourcemaps
 app/css
