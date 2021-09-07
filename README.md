@@ -7,10 +7,11 @@ Small website for creating peepo with sign.
 ## Instalation
 
 ```bash
+npm install --global gulp-cli #if needed
 npm install
 ```
 
-## Gulp commends
+## Gulp commands
 Run live server:
 ```javascript
 gulp watch

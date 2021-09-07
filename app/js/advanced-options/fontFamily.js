@@ -1,6 +1,6 @@
 const apikey = "AIzaSyDvwX-EQPmNL8RRY2yXxuMcRkPQ2iTqasw";
 let fonts = [];
-let loadedFontlimits = 50;//from 1 to max 1090 fonts;
+let loadedFontlimits = 50; //from 1 to max 1090 fonts;
 
 function checkFontFamily() {
     options.fontFamily = document
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             for (let i = 0; i < loadedFontlimits; i++) {
                 if (data.items[i].files.regular) {
-                    fonts.push(new FontFace(data.items[i].family, `url(${data.items[i].files.regular})`))
+                    fonts.push(new FontFace(data.items[i].family, `url(${data.items[i].files.regular.replace("http://", "https://")})`))
                     let newSelectEl = document.createElement("option");
                     newSelectEl.style.fontFamily = data.items[i].family;
                     newSelectEl.innerText = data.items[i].family;
@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         .appendChild(newSelectEl)
                 }
             }
+            console.log(fonts)
             return (fonts)
         })
         .then(fonts => {
