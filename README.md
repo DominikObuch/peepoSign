@@ -2,7 +2,7 @@
 
 Small website for creating peepo with sign.
 
-### [Live version](https://dominikobuch.github.io/peepoSign/docs/)
+### [Live version](https://dominikobuch.github.io/peepoSign/)
 
 ## Instalation
 
